@@ -1,0 +1,30 @@
+{
+  "productList": [
+    {
+      "productName": "dggge",
+      "category": "dsfdsf",
+      "quantity": 1,
+      "price": "2000",
+      "serial": "1",
+      "id": 1
+    },
+    {
+      "productName": "asd",
+      "category": "wqeee",
+      "quantity": 12,
+      "price": "132",
+      "serial": "4553",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
