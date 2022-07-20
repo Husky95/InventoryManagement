@@ -14,7 +14,7 @@ import { DataSource } from '@angular/cdk/table';
 })
 export class ItemsComponent implements OnInit {
   //displayedColumns: string[] = ['productName', 'category', 'quantity', 'price','serial','action'];
-  displayedColumns: string[] = ['itemName', 'itemCategory','action'];
+  displayedColumns: string[] = ['itemID','itemName', 'itemCategory','action'];
 
   dataSource : MatTableDataSource<any>;
 
@@ -68,7 +68,9 @@ export class ItemsComponent implements OnInit {
       }
     })
   }
-  deleteItem(id:number){
+  deleteItem(id : number){
+
+    console.log(id);
     this.api.deleteItem(id)
     .subscribe({
       next:(res)=>{

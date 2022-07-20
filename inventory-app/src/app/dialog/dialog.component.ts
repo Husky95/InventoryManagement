@@ -17,19 +17,14 @@ export class DialogComponent implements OnInit {
               private dialogRef : MatDialogRef<DialogComponent>){ }
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      productName: ['',Validators.required],
-      category: ['',Validators.required], 
-      quantity: ['',Validators.required], 
-      price: ['',Validators.required], 
-      serial: ['',Validators.required]
+      itemName: ['',Validators.required],
+      itemCategory: ['',Validators.required]
+     
 
     });
     if(this.editData){
-      this.productForm.controls['productName'].setValue(this.editData.productName);
-      this.productForm.controls['category'].setValue(this.editData.category);
-      this.productForm.controls['price'].setValue(this.editData.price);
-      this.productForm.controls['quantity'].setValue(this.editData.quantity);
-      this.productForm.controls['serial'].setValue(this.editData.serial);
+      this.productForm.controls['itemName'].setValue(this.editData.itemName);
+      this.productForm.controls['itemCategory'].setValue(this.editData.itemCategory);
       this.actionBtn = "Update"
     }
   }
@@ -42,7 +37,7 @@ export class DialogComponent implements OnInit {
         this.api.postItem(this.productForm.value)
         .subscribe({
           next:(res) =>{
-            //alert("Add successful")
+            alert("Add successful")
             this.productForm.reset();
             this.dialogRef.close('save');
           },
@@ -57,7 +52,11 @@ export class DialogComponent implements OnInit {
     }
   }
   updateItem(){
-    this.api.putItem(this.productForm.value,this.editData.id)
+    let passData = this.editData;
+    passData.itemName=this.productForm.value.itemName;
+    passData.itemCategory=this.productForm.value.itemCategory;
+
+    this.api.putItem(passData)
     .subscribe({
       next:(res)=>{
         console.log("Update Successful")

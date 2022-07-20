@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -82,6 +81,51 @@ public class ItemServlet extends HttpServlet {
 		}
 		
 	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("Do Post");
+		
+		InputStream reqBody = req.getInputStream();
+		Item newItem = mapper.readValue(reqBody, Item.class);
+		newItem = dao.save(newItem); // IF the id changed
+		
+		if (newItem != null) {
+			resp.setContentType("application/json");
+			resp.getWriter().print(mapper.writeValueAsString(newItem));
+			resp.setStatus(201); // The default is 200
+		} else {
+			resp.setStatus(400);
+			resp.getWriter().print(mapper.writeValueAsString(new NotFound("Unable to create item")));
+		}
+	}
 	
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("Do Put");
+		InputStream reqBody = req.getInputStream();
+		Item newItem = mapper.readValue(reqBody, Item.class);
+		newItem = dao.updateItem(newItem); 
+		if (newItem != null) {
+			resp.setContentType("application/json");
+			resp.getWriter().print(mapper.writeValueAsString(newItem));
+			resp.setStatus(201); // The default is 200
+		} else {
+			resp.setStatus(400);
+			resp.getWriter().print(mapper.writeValueAsString(new NotFound("Unable to update item")));
+		}
+	}
+	
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("Do Delete");
+		int id = urlService.extractIdFromURL(req.getPathInfo());
+		int status = dao.deleteItem(id); 
+		if (status != 0) {
+			resp.setStatus(201); // The default is 200
+		} else {
+			resp.setStatus(400);
+			resp.getWriter().print(mapper.writeValueAsString(new NotFound("Unable to Delete item")));
+		}
+	}
 
 }

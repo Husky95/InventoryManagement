@@ -3,29 +3,15 @@
     <form [formGroup]="productForm">
         <mat-form-field appearance="outline">
             <mat-label>Item Name</mat-label>
-            <input formControlName="productName" matInput placeholder="Placeholder">
+            <input formControlName="itemName" matInput placeholder="Placeholder">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Item Category</mat-label>
-            <input formControlName="category" matInput placeholder="Placeholder">
+            <input formControlName="itemCategory" matInput placeholder="Placeholder">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Item Quantity</mat-label>
-            <input formControlName="quantity" matInput type="number" placeholder="Placeholder">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Price</mat-label>
-            <input formControlName="price" matInput placeholder="Placeholder">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Serial Code</mat-label>
-            <input formControlName="serial" matInput placeholder="Placeholder">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
+       
     </form>
 </div>
 <div mat-dialog-action [align]="'end'">
