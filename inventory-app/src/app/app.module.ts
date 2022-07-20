@@ -29,6 +29,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { GridComponent } from './grid/grid.component'  
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapComponent } from './map/map.component';
+import {ChartModule} from 'primeng/chart';
 
 const appRoute: Routes =[
   {
@@ -45,7 +48,9 @@ const appRoute: Routes =[
     ItemsComponent,
     DashboardComponent,
     DialogComponent,
-    GridComponent
+    GridComponent,
+    MapComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,9 @@ const appRoute: Routes =[
     HttpClientModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    GoogleMapsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
