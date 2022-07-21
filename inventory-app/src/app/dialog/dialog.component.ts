@@ -18,13 +18,17 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       itemName: ['',Validators.required],
-      itemCategory: ['',Validators.required]
-     
-
+      itemCategory: ['',Validators.required],
+      itemCompany: ['',Validators.required],
+      itemPrice: ['',Validators.required],
+      itemQuantity: ['',Validators.required],
     });
     if(this.editData){
       this.productForm.controls['itemName'].setValue(this.editData.itemName);
       this.productForm.controls['itemCategory'].setValue(this.editData.itemCategory);
+      this.productForm.controls['itemCompany'].setValue(this.editData.itemCompany);
+      this.productForm.controls['itemPrice'].setValue(this.editData.itemPrice);
+      this.productForm.controls['itemQuantity'].setValue(this.editData.itemQuantity);
       this.actionBtn = "Update"
     }
   }
@@ -55,6 +59,9 @@ export class DialogComponent implements OnInit {
     let passData = this.editData;
     passData.itemName=this.productForm.value.itemName;
     passData.itemCategory=this.productForm.value.itemCategory;
+    passData.itemCompany=this.productForm.value.itemCompany;
+    passData.itemPrice=this.productForm.value.itemPrice;
+    passData.itemQuantity=this.productForm.value.itemQuantity;
 
     this.api.putItem(passData)
     .subscribe({

@@ -33,7 +33,8 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 				item.setItemCompany(rs.getString(3));
 				item.setItemCategory(rs.getString(4));
 				item.setItemPrice(rs.getLong(5));
-				
+				item.setItemQuantity(rs.getLong(6));
+
 				itemList.add(item);
 			}
 			rs.close();
@@ -60,7 +61,7 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 	@Override
 	public Item save(Item item) {
 		// If this was auto-increment, then the artistid is not needed
-		String sql = "INSERT INTO inventory (itemName, itemCategory) VALUES (?, ?)";
+		String sql = "INSERT INTO inventory (itemName, itemCategory, itemCompany, itemPrice, itemQuantity) VALUES (?, ?, ?, ?, ?)";
 		InventoryDbCreds creds = InventoryDbCreds.getInstance();	
 
 		try {
@@ -71,8 +72,12 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 			
 			// Obtain auto incremented values like so
 			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, item.getItemCategory());
-			ps.setString(2, item.getItemName());
+			ps.setString(1, item.getItemName());
+			ps.setString(2, item.getItemCategory());
+			ps.setString(3, item.getItemCompany());
+			ps.setLong(4, item.getItemPrice());
+			ps.setLong(5, item.getItemQuantity());
+
 			
 			int rowsAffected = ps.executeUpdate(); // If 0 is returned, my data didn't save
 			if (rowsAffected != 0) {
@@ -99,7 +104,7 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 
 	@Override
 	public Item updateItem(Item item) {
-		String sql = "UPDATE inventory SET itemName=? , itemCategory=? WHERE itemID=?";
+		String sql = "UPDATE inventory SET itemName=? , itemCategory=?, itemCompany=?, itemPrice=?, itemQuantity=? WHERE itemID=?";
 		InventoryDbCreds creds = InventoryDbCreds.getInstance();	
 	        try{  
 				Connection conn = DriverManager.getConnection(creds.getUrl(),creds.getUsername(),creds.getPassword());
@@ -108,7 +113,10 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 	            PreparedStatement ps = conn.prepareStatement(sql);  
 	            ps.setString(1,item.getItemName());  
 	            ps.setString(2,item.getItemCategory());  
-	            ps.setInt(3,item.getItemID());  
+	            ps.setString(3,item.getItemCompany());  
+	            ps.setLong(4,item.getItemPrice());  
+	            ps.setLong(5,item.getItemQuantity());  
+	            ps.setInt(6,item.getItemID());  
 				int rowsAffected = ps.executeUpdate(); // If 0 is returned, my data didn't save
 				if( rowsAffected == 0) {
 					System.out.println("UPDATE Item Query fail");

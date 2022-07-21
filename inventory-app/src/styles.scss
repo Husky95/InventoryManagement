@@ -1,7 +1,16 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$my-app-primary: mat-palette($mat-pink);
+$my-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);
+
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 html, body { height: 100%; }
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 * {
     margin: 0;
@@ -18,13 +27,14 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: .5rem;
-    background-color: #fff;
+    background-color: #1B2430;
     margin: 1.25rem 0 1.25rem 0;
-    box-shadow: 0 .25rem .5rem #e6edef;
+    box-shadow: 0 .25rem .5rem #1B2430;
+    color: #00ADB5;
 
     .card-head {
         padding: 1rem 1.5rem;
-        border-bottom: 1px solid #edf1f7;
+        border-bottom: 5px solid #171717;
         font-size: 1rem;
         font-weight: 600;
     }
@@ -33,3 +43,4 @@ body {
         padding: 1rem 1.5rem; 
     }
 }
+

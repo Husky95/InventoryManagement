@@ -1,12 +1,14 @@
+$primary: #1B2430;
+
 .sidenav {
-    background: #263238;
+    background: $primary;
     transition: all .5s ease;
     position: fixed;
     z-index: 1;
     top: 0;
     width: 5rem;
     height: 100vh;
-    box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+    box-shadow: 0.063rem 0 1.25rem 0 #1B2430;
 
     .logo-container {
         display: flex;
@@ -15,7 +17,7 @@
         width: 100%;
 
         .logo {
-            background: #fff;
+            background: #00ADB5;
             text-align: center;
             width: 3rem;
             min-width: 3rem;
@@ -31,7 +33,7 @@
             margin-left: 1.5rem;
             font-size: 24px;
             font-weight: 700;
-            color: #fff;
+            color: #00ADB5;
         }
 
         .btn-close {
@@ -44,7 +46,7 @@
             border: none;
 
             .fa-times {
-                color: #fff;
+                color: #00ADB5;
                 font-size: 24px;
             }
         }
@@ -73,7 +75,7 @@
             display: flex;
             align-items: center;
             height: 3rem;
-            color: #f3f3f3;
+            color: #00ADB5;
             text-decoration: none;
             border-radius: 0.625rem;
             transition: all .3s ease;
@@ -94,14 +96,14 @@
 
     .sidenav-nav-item:hover {
         .sidenav-nav-link {
-            background-color: #fff;
+            background-color: #00ADB5;
             color: #000;
         }
     }
 }
 
 .active {
-    background-color: #fff;
+    background-color: #00ADB5;
 
     .sidenav-link-icon,
     .sidenav-link-text {

@@ -28,10 +28,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { GridComponent } from './grid/grid.component'  
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MapComponent } from './map/map.component';
 import {ChartModule} from 'primeng/chart';
+import { MatSelectModule } from '@angular/material/select';
+import { PrimaryThemeDirective } from './primary-theme.directive';
+import { TextThemeDirective } from './text-theme.directive';
 
 const appRoute: Routes =[
   {
@@ -48,8 +50,9 @@ const appRoute: Routes =[
     ItemsComponent,
     DashboardComponent,
     DialogComponent,
-    GridComponent,
     MapComponent,
+    PrimaryThemeDirective,
+    TextThemeDirective,
     
   ],
   imports: [
@@ -75,7 +78,9 @@ const appRoute: Routes =[
     MatSortModule,
     MatTableModule,
     GoogleMapsModule,
-    ChartModule
+    ChartModule,
+    MatSelectModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

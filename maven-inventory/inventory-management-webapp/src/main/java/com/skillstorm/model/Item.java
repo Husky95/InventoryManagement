@@ -6,6 +6,7 @@ public class Item {
 	private String itemCompany;
 	private String itemCategory;
 	private long itemPrice;
+	private long itemQuantity;
 	
 	public Item() {}
 	public Item(String itemName) {}
@@ -40,6 +41,12 @@ public class Item {
 	}
 	public void setItemPrice(long itemPrice) {
 		this.itemPrice = itemPrice;
+	}
+	public long getItemQuantity() {
+		return itemQuantity;
+	}
+	public void setItemQuantity(long itemQuantity) {
+		this.itemQuantity = itemQuantity;
 	}
 	@Override
 	public String toString() {

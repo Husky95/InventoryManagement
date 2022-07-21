@@ -14,7 +14,7 @@ import { DataSource } from '@angular/cdk/table';
 })
 export class ItemsComponent implements OnInit {
   //displayedColumns: string[] = ['productName', 'category', 'quantity', 'price','serial','action'];
-  displayedColumns: string[] = ['itemID','itemName', 'itemCategory','action'];
+  displayedColumns: string[] = ['itemID','itemName', 'itemCategory','itemCompany','itemPrice','itemQuantity','action'];
 
   dataSource : MatTableDataSource<any>;
 

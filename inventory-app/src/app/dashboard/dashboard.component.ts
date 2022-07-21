@@ -13,19 +13,17 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     //Doughnut Chart
     this.datadoughnut = {
-      labels: ['A','B','C'],
+      labels: ['Full','Empty'],
       datasets: [
           {
-              data: [300, 50, 100],
+              data: [ 30, 70],
               backgroundColor: [
                   "#FF6384",
                   "#36A2EB",
-                  "#FFCE56"
               ],
               hoverBackgroundColor: [
                   "#FF6384",
                   "#36A2EB",
-                  "#FFCE56"
               ]
           }]    
       };

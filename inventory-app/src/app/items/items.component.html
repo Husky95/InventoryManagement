@@ -1,14 +1,17 @@
-<button mat-raised-button color="warn" (click)="openDialog()">Add Item</button>
-<div class="container">
-    <mat-form-field appearance="standard">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-      </mat-form-field>
-      
+<div class="card">
+<div class="card-head">Item List</div>
+<div class="card-body">
+<mat-form-field  appTextTheme appearance="standard">
+  <mat-label  appTextTheme>Filter</mat-label>
+  <input  appTextTheme id="table_filter" matInput (keyup)="applyFilter($event)"  #input>
+</mat-form-field>
+
+<div appTextTheme class="container">
+      <button  id="addButton" mat-raised-button color="warn" (click)="openDialog()">Add Item</button>
+
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
       
-          <!-- ID Column -->
           <ng-container matColumnDef="itemID">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Item ID </th>
             <td mat-cell *matCellDef="let row"> {{row.itemID}} </td>
@@ -19,12 +22,25 @@
             <td mat-cell *matCellDef="let row"> {{row.itemName}} </td>
           </ng-container>
       
-          <!-- Progress Column -->
           <ng-container matColumnDef="itemCategory">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
             <td mat-cell *matCellDef="let row"> {{row.itemCategory}} </td>
           </ng-container>
-      
+          
+          <ng-container matColumnDef="itemCompany">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+            <td mat-cell *matCellDef="let row"> {{row.itemCompany}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="itemPrice">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+            <td mat-cell *matCellDef="let row"> {{row.itemPrice}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="itemQuantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit </th>
+            <td mat-cell *matCellDef="let row"> {{row.itemQuantity}} </td>
+          </ng-container>
        
               <!-- Action Column -->
           <ng-container matColumnDef="action">
@@ -38,6 +54,7 @@
                 </button>
             </td>
           </ng-container>
+          
       
       
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -49,7 +66,7 @@
           </tr>
         </table>
       
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-        
+        <mat-paginator [pageSizeOptions]="[10,20, 50, 100]" aria-label="Select page of users"></mat-paginator>
       </div>
+</div>
 </div>
