@@ -10,7 +10,6 @@ public interface ItemDAO {
 	public Item findByName(String name);
 	public Item save(Item item);
 	public Item updateItem(Item item);	
-
 	public int deleteItem(int itemID);
 
 	

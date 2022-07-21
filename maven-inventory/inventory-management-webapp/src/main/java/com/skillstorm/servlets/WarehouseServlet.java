@@ -13,27 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skillstorm.daos.ItemDAO;
 import com.skillstorm.daos.ItemMySQLDAOImpl;
+import com.skillstorm.daos.WarehouseDAO;
+import com.skillstorm.daos.WarehouseMySQLDAOImpl;
 import com.skillstorm.model.Item;
 import com.skillstorm.model.NotFound;
+import com.skillstorm.model.Warehouse;
 import com.skillstorm.services.URLParserService;
 
-@WebServlet(urlPatterns = "/items/*")
-public class ItemServlet extends HttpServlet {
-
+@WebServlet(urlPatterns = "/warehouse/*")
+public class WarehouseServlet extends HttpServlet{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 180781512143496763L;
-
-	/*
-	 * Servlet Lifecycle
-	 * 
-	 * init - A method called when the web server first creates our servlet
-	 * service - method called before EVERY request
-	 * destroy - method called when the web server is stopped/servlet terminates
-	 */
-	
+	private static final long serialVersionUID = -1255978588645665829L;
 	@Override
 	public void init() throws ServletException {
 		// This allows us to write code that is run right as the servlet is created
@@ -59,16 +52,15 @@ public class ItemServlet extends HttpServlet {
 		super.service(req, resp); // Keep this line
 	}
 	
-	ItemDAO dao = new ItemMySQLDAOImpl();
+	WarehouseDAO dao = new WarehouseMySQLDAOImpl();
 	ObjectMapper mapper = new ObjectMapper();
 	URLParserService urlService = new URLParserService();
-	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			//int id = urlService.extractIdFromURL(req.getPathInfo());
-			List<Item> artists = dao.getAllItems();
+			List<Warehouse> artists = dao.getAllWarehouse();
 			System.out.println(artists);
 			resp.setContentType("application/json");
 			resp.getWriter().print(mapper.writeValueAsString(artists));
@@ -85,12 +77,12 @@ public class ItemServlet extends HttpServlet {
 		System.out.println("Do Post");
 		
 		InputStream reqBody = req.getInputStream();
-		Item newItem = mapper.readValue(reqBody, Item.class);
-		newItem = dao.save(newItem); // IF the id changed
+		Warehouse newWarehouse = mapper.readValue(reqBody, Warehouse.class);
+		newWarehouse = dao.save(newWarehouse); // IF the id changed
 		
-		if (newItem != null) {
+		if (newWarehouse != null) {
 			resp.setContentType("application/json");
-			resp.getWriter().print(mapper.writeValueAsString(newItem));
+			resp.getWriter().print(mapper.writeValueAsString(newWarehouse));
 			resp.setStatus(201); // The default is 200
 		} else {
 			resp.setStatus(400);
@@ -102,23 +94,22 @@ public class ItemServlet extends HttpServlet {
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Do Put");
 		InputStream reqBody = req.getInputStream();
-		Item newItem = mapper.readValue(reqBody, Item.class);
-		newItem = dao.updateItem(newItem); 
-		if (newItem != null) {
+		Warehouse newWarehouse = mapper.readValue(reqBody, Warehouse.class);
+		newWarehouse = dao.updateWarehouse(newWarehouse); 
+		if (newWarehouse != null) {
 			resp.setContentType("application/json");
-			resp.getWriter().print(mapper.writeValueAsString(newItem));
+			resp.getWriter().print(mapper.writeValueAsString(newWarehouse));
 			resp.setStatus(201); // The default is 200
 		} else {
 			resp.setStatus(400);
 			resp.getWriter().print(mapper.writeValueAsString(new NotFound("Unable to update item")));
 		}
 	}
-	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Do Delete");
 		int id = urlService.extractIdFromURL(req.getPathInfo());
-		int status = dao.deleteItem(id); 
+		int status = dao.deleteWarehouse(id); 
 		if (status != 0) {
 			resp.setStatus(201); // The default is 200
 		} else {
@@ -126,5 +117,4 @@ public class ItemServlet extends HttpServlet {
 			resp.getWriter().print(mapper.writeValueAsString(new NotFound("Unable to Delete item")));
 		}
 	}
-
 }

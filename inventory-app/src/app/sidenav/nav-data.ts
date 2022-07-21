@@ -10,6 +10,11 @@ export const navbarData = [
         label: 'Items'
     },
     {
+        routeLink: 'warehouse',
+        icon: 'fal fa-warehouse',
+        label: 'Warehouse'
+    },
+    {
         routeLink: 'settings',
         icon: 'fal fa-cog',
         label: 'Settings'

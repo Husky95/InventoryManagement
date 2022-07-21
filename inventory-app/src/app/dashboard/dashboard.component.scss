@@ -1,8 +1,9 @@
 .pie-chart{
     position: relative;
     float: right;
+    z-index: 2;
 }
 .map{
-    position: relative;
-    width: 100px;
+    position: fixed;
+    z-index: 1;
 }

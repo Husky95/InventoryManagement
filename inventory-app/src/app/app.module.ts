@@ -34,6 +34,8 @@ import {ChartModule} from 'primeng/chart';
 import { MatSelectModule } from '@angular/material/select';
 import { PrimaryThemeDirective } from './primary-theme.directive';
 import { TextThemeDirective } from './text-theme.directive';
+import { WarehouseComponent } from './warehouse/warehouse.component';
+import { DialogWarehouseComponent } from './dialog-warehouse/dialog-warehouse.component';
 
 const appRoute: Routes =[
   {
@@ -53,6 +55,8 @@ const appRoute: Routes =[
     MapComponent,
     PrimaryThemeDirective,
     TextThemeDirective,
+    WarehouseComponent,
+    DialogWarehouseComponent,
     
   ],
   imports: [

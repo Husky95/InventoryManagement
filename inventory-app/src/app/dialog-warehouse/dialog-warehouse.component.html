@@ -1,0 +1,39 @@
+<h1 mat-dialog-title id="form-title">Add Warehouse Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="productForm">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Warehouse Name</mat-label>
+            <input formControlName="warehouseName" matInput placeholder="Placeholder">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Street</mat-label>
+            <input formControlName="address" matInput placeholder="Placeholder">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input formControlName="city" matInput placeholder="Placeholder">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input formControlName="state" matInput placeholder="Placeholder">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Zipcode</mat-label>
+            <input formControlName="zipcode" matInput placeholder="Placeholder">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Capacity</mat-label>
+            <input formControlName="capacity" matInput placeholder="Placeholder">
+        </mat-form-field>
+
+
+
+        
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+<button mat-raised-button color="warn" mat-dialog-close="Close">Close</button>
+<button style="margin-left: 8px" mat-raised-button color="primary" (click)="addWarehouse()">{{actionBtn}}</button>
+
+</div>

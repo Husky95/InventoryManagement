@@ -35,7 +35,6 @@ export class DialogComponent implements OnInit {
 
   //Post value from form to database
   addProduct(){
-    console.log(this.productForm.value);
     if(!this.editData){
       if(this.productForm.valid){
         this.api.postItem(this.productForm.value)
