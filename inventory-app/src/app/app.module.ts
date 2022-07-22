@@ -29,14 +29,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { MapComponent } from './map/map.component';
 import {ChartModule} from 'primeng/chart';
 import { MatSelectModule } from '@angular/material/select';
 import { PrimaryThemeDirective } from './primary-theme.directive';
 import { TextThemeDirective } from './text-theme.directive';
 import { WarehouseComponent } from './warehouse/warehouse.component';
 import { DialogWarehouseComponent } from './dialog-warehouse/dialog-warehouse.component';
-import { TopbarComponent } from './topbar/topbar.component';
 import {Menubar, MenubarModule} from 'primeng/menubar';
 import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
 import {ListboxModule} from 'primeng/listbox';
@@ -56,12 +54,10 @@ const appRoute: Routes =[
     ItemsComponent,
     DashboardComponent,
     DialogComponent,
-    MapComponent,
     PrimaryThemeDirective,
     TextThemeDirective,
     WarehouseComponent,
     DialogWarehouseComponent,
-    TopbarComponent,
     WarehouseListComponent,
     
   ],
