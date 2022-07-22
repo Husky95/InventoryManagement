@@ -1,6 +1,8 @@
-import { Component, OnInit, OnChanges  } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild  } from '@angular/core';
 import { VariablesService } from '../variables.service'
+import { UIChart } from 'primeng/chart';
 
+@ViewChild('chart')
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -8,6 +10,8 @@ import { VariablesService } from '../variables.service'
 })
 export class DashboardComponent implements OnInit {
   datadoughnut: any;
+  renewData: any;
+
   warehouseName = 'None'
   warehouseStreet = 'None'
   warehouseCity = 'None'
@@ -18,15 +22,16 @@ export class DashboardComponent implements OnInit {
   constructor(private warehouseGlobal : VariablesService ) {  }
 
   ngOnInit(): void {
+    
     this.id = setInterval(() => {
       this.setWarehouse(); 
-    }, 10);   
+    }, 100);   
 
     this.datadoughnut = {
       labels: ['Full','Empty'],
       datasets: [
           {
-              data: [ 30, 70],
+              data: [ 50, 50],
               backgroundColor: [
                   "#FF6384",
                   "#36A2EB",
@@ -37,6 +42,22 @@ export class DashboardComponent implements OnInit {
               ]
           }]    
       };
+      this.renewData = {
+        labels: ['Full','Empty'],
+        datasets: [
+            {
+                data: [ 30, 70],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                ]
+            }]    
+        };
+  
 
   }
   ngOnChanges(warehouseGlobal: VariablesService){
@@ -56,6 +77,6 @@ export class DashboardComponent implements OnInit {
     this.warehouseState = this.warehouseGlobal.warehouseObject.state;
     this.warehouseZipcode = this.warehouseGlobal.warehouseObject.zipcode;
     this.warehouseCapacity = this.warehouseGlobal.warehouseObject.capacity;
-
+   
   }
 }

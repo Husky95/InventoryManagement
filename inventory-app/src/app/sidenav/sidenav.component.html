@@ -1,5 +1,8 @@
 
-
+<mat-toolbar class="top-bar" color="primary">
+    <mat-toolbar-row>
+      <span class="outer-text">CURRENT WAREHOUSE : <span class="inner-text"> {{warehouseName}} </span></span>
+</mat-toolbar-row>
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
     <div class="logo-container">
         <button class="logo" (click)="toggleCollapse()">S</button>

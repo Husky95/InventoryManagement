@@ -1,6 +1,7 @@
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { navbarData } from './nav-data';
+import { VariablesService } from '../variables.service'
 
 interface SideNavToggle {
   screenWidth: number;
@@ -39,6 +40,9 @@ interface SideNavToggle {
   ]
 })
 export class SidenavComponent implements OnInit {
+  warehouseName = 'None'; 
+  id : any;
+  constructor(private warehouseGlobal : VariablesService ) {  }
 
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = false;
@@ -56,6 +60,9 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
       this.screenWidth = window.innerWidth;
+      this.id = setInterval(() => {
+        this.setWarehouseName(); 
+      }, 100); 
   }
 
   toggleCollapse(): void {
@@ -66,5 +73,9 @@ export class SidenavComponent implements OnInit {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+  }
+  setWarehouseName(){
+    this.warehouseName = this.warehouseGlobal.warehouseObject.warehouseName;
+    
   }
 }

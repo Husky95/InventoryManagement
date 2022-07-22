@@ -1,5 +1,15 @@
 $primary: #1B2430;
-
+.top-bar{
+    background-color: $primary;
+}
+.outer-text{
+    color: #00ADB5;
+    margin-left: 90rem;
+}
+.inner-text{
+    
+    color:#FF2E63;
+}
 .sidenav {
     background: $primary;
     transition: all .5s ease;
