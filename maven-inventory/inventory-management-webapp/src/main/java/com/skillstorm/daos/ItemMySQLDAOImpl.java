@@ -13,6 +13,11 @@ import java.sql.Statement;
 
 public class ItemMySQLDAOImpl implements ItemDAO {
 
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to get all value from inventory table
+	  * @return - return an Item object if successful else return null
+	  */
 	@Override
 	public List<Item> getAllItems() {
 		String sql = "SELECT * FROM inventory";
@@ -46,19 +51,12 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 
 		return null;
 	}
-
-	@Override
-	public Item findByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Item findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to create a new row in inventory table
+	  * @param item - take in an Item object
+	  * @return item - return an Item object if successful else return null
+	  */
 	@Override
 	public Item save(Item item) {
 		String sql = "INSERT INTO inventory (itemName, itemCategory, itemCompany, itemPrice, itemQuantity, warehouseID) VALUES (?, ?, ?, ?, ?, ?)";
@@ -99,7 +97,12 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 		return null;
 	}
 
-
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to update a row in inventory table based on itemID value
+	  * @param item - take in an Item object
+	  * @return item - return an Item object 
+	  */
 	@Override
 	public Item updateItem(Item item) {
 		String sql = "UPDATE inventory SET itemName=? , itemCategory=?, itemCompany=?, itemPrice=?, itemQuantity=? WHERE itemID=?";
@@ -124,7 +127,12 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 	        }catch(SQLException ex){ex.printStackTrace();}  
 	      	return item;
 	}
-	
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to delete a row in inventory table based on itemID value
+	  * @param itemID - take in an integer item ID variable
+	  * @return status - return an status integer where 0 mean fail and greater than 0 mean success
+	  */
 	@Override
 	public int deleteItem(int itemID) {
 		String sql = "DELETE FROM inventory WHERE itemID=?";

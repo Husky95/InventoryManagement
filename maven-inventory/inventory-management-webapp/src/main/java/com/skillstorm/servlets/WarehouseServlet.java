@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skillstorm.daos.ItemDAO;
-import com.skillstorm.daos.ItemMySQLDAOImpl;
 import com.skillstorm.daos.WarehouseDAO;
 import com.skillstorm.daos.WarehouseMySQLDAOImpl;
-import com.skillstorm.model.Item;
 import com.skillstorm.model.NotFound;
 import com.skillstorm.model.Warehouse;
 import com.skillstorm.services.URLParserService;
@@ -29,25 +26,17 @@ public class WarehouseServlet extends HttpServlet{
 	private static final long serialVersionUID = -1255978588645665829L;
 	@Override
 	public void init() throws ServletException {
-		// This allows us to write code that is run right as the servlet is created
-		// You can establish any connections
-		
-		//System.out.println("ArtistServlet Created!");
 		super.init();
 	}
 
 	@Override
 	public void destroy() {
-		// If any connections were established in init
-		// Terminate those connections here
-		//System.out.println("ArtistServlet Destroyed!");
+		
 		super.destroy();
 	}
-	
 	// I would prefer filters to this
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// This method activates on ALL HTTP requests to this servlet
 		System.out.println("Servicing request!");
 		super.service(req, resp); // Keep this line
 	}
@@ -59,7 +48,6 @@ public class WarehouseServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			//int id = urlService.extractIdFromURL(req.getPathInfo());
 			List<Warehouse> artists = dao.getAllWarehouse();
 			System.out.println(artists);
 			resp.setContentType("application/json");

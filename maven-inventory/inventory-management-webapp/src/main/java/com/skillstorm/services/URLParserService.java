@@ -1,5 +1,10 @@
 package com.skillstorm.services;
-
+/**
+* Return a integer from the url. 
+* Method take in a url value and extracted the value after /  
+* @param  url  an absolute URL giving the base location of the image
+* @return      value after / 
+*/
 public class URLParserService {
 	public int extractIdFromURL(String url) {
 //		System.out.println(url); // /12/123

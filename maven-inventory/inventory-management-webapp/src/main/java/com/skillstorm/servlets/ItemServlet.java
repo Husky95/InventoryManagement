@@ -26,32 +26,19 @@ public class ItemServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 180781512143496763L;
 
-	/*
-	 * Servlet Lifecycle
-	 * 
-	 * init - A method called when the web server first creates our servlet
-	 * service - method called before EVERY request
-	 * destroy - method called when the web server is stopped/servlet terminates
-	 */
 	
 	@Override
 	public void init() throws ServletException {
-		// This allows us to write code that is run right as the servlet is created
-		// You can establish any connections
 		
-		//System.out.println("ArtistServlet Created!");
 		super.init();
 	}
 
 	@Override
 	public void destroy() {
-		// If any connections were established in init
-		// Terminate those connections here
-		//System.out.println("ArtistServlet Destroyed!");
+	
 		super.destroy();
 	}
 	
-	// I would prefer filters to this
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// This method activates on ALL HTTP requests to this servlet

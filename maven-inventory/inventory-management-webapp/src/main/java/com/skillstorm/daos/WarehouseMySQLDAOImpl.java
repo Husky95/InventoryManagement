@@ -13,6 +13,12 @@ import java.sql.Statement;
 
 public class WarehouseMySQLDAOImpl implements WarehouseDAO {
 
+
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to get all value from warehouse table
+	  * @return - return an Warehouse object if successful else return null
+	  */
 	@Override
 	public List<Warehouse> getAllWarehouse() {
 		String sql = "SELECT * FROM warehouse";
@@ -46,7 +52,12 @@ public class WarehouseMySQLDAOImpl implements WarehouseDAO {
 		return null;
 	}
 
-	
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to create a row in warehouse table 
+	  * @param warehouse - take in an Warehouse object
+	  * @return warehouse - return an Warehouse object if success and null if fail
+	  */
 	@Override
 	public Warehouse save(Warehouse warehouse) {
 		// If this was auto-increment, then the artistid is not needed
@@ -92,6 +103,12 @@ public class WarehouseMySQLDAOImpl implements WarehouseDAO {
 	}
 	
 	@Override
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to update a row in warehouse table based on warehouse ID value
+	  * @param warehouse - take in an Warehouse object
+	  * @return warehouse - return an Warehouse object 
+	  */
 	public Warehouse updateWarehouse(Warehouse warehouse) {
 		String sql = "UPDATE warehouse SET warehouseName=? , address=?, city=?, state=?, zipcode=?, capacity=? WHERE warehouseID=?";
 		InventoryDbCreds creds = InventoryDbCreds.getInstance();	
@@ -116,7 +133,12 @@ public class WarehouseMySQLDAOImpl implements WarehouseDAO {
 	        }catch(SQLException ex){ex.printStackTrace();}  
 	      	return warehouse;
 	}
-
+	/**
+	  * {@inheritDoc}
+	  * Run an SQL query to delete a row in warehouse table based on warehouseID value
+	  * @param warehoudeID - take in an integer warehouse ID variable
+	  * @return status - an status integer where 0 mean fail and greater than 0 mean success
+	  */
 	@Override
 	public int deleteWarehouse(int warehouseID) {
 		String sql = "DELETE FROM warehouse WHERE warehouseID=?";
