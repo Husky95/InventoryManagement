@@ -1,6 +1,5 @@
 @import '~@angular/material/theming';
 @include mat-core();
-$primary: #1B2430;
 
 $my-app-primary: mat-palette($mat-pink);
 $my-app-accent: mat-palette($mat-pink, A200, A100, A400);
@@ -33,7 +32,7 @@ body {
     border-radius: .5rem;
     background-color: #1B2430;
     margin: 1.25rem 0 1.25rem 0;
-    box-shadow: 0 .25rem .5rem #A6B1E1;
+    box-shadow: 0 .25rem .5rem #1B2430;
     color: #00ADB5;
 
     .card-head {
