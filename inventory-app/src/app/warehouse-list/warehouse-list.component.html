@@ -1,0 +1,17 @@
+<p-listbox
+  [options]="cities"
+  optionLabel="name"
+  [style]="{ width: '29vw' }"
+></p-listbox>
+
+<p-listbox (click)="onSave()"
+  [options]="warehouse"
+  [(ngModel)]="selectedWarehouse"
+  [filter]="true"
+  optionLabel="name"
+  
+  [listStyle]="{ 'max-height': '50vh' }"
+  [style]="{ width: '29vw' }"
+>
+ 
+</p-listbox>

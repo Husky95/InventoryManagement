@@ -11,7 +11,7 @@ export class ApiService {
   postItem(data:any){
     return this.http.post<any>("http://localhost:8080/inventory-management-webapp/items/",data)
   }
-  getItem(){
+  getItem(){  
     return this.http.get<any>("http://localhost:8080/inventory-management-webapp/items/")
     //return this.http.get<any>("http://localhost:3000/productList")
   }

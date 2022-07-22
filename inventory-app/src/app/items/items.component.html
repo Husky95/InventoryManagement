@@ -41,6 +41,11 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit </th>
             <td mat-cell *matCellDef="let row"> {{row.itemQuantity}} </td>
           </ng-container>
+
+          <ng-container matColumnDef="warehouseID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Warehouse ID </th>
+            <td mat-cell *matCellDef="let row"> {{row.warehouseID}} </td>
+          </ng-container>
        
               <!-- Action Column -->
           <ng-container matColumnDef="action">

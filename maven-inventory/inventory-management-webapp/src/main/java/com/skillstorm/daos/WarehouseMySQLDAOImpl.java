@@ -50,7 +50,7 @@ public class WarehouseMySQLDAOImpl implements WarehouseDAO {
 	@Override
 	public Warehouse save(Warehouse warehouse) {
 		// If this was auto-increment, then the artistid is not needed
-		String sql = "INSERT INTO warehouse (warehouseName, address, city, state, zipcode, capacity) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO warehouse (warehouseName, address, city, state, zipcode, capacity) VALUES (?, ?, ?, ?, ?, ?)";
 		InventoryDbCreds creds = InventoryDbCreds.getInstance();	
 
 		try {

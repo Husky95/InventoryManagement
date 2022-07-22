@@ -83,11 +83,15 @@ public class ItemServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Do Post");
-		
+
 		InputStream reqBody = req.getInputStream();
+
 		Item newItem = mapper.readValue(reqBody, Item.class);
+		System.out.println(newItem);
+
 		newItem = dao.save(newItem); // IF the id changed
-		
+		System.out.println(newItem);
+
 		if (newItem != null) {
 			resp.setContentType("application/json");
 			resp.getWriter().print(mapper.writeValueAsString(newItem));

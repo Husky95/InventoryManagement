@@ -7,7 +7,14 @@ public class Item {
 	private String itemCategory;
 	private long itemPrice;
 	private long itemQuantity;
+	private int warehouseID;
 	
+	public int getWarehouseID() {
+		return warehouseID;
+	}
+	public void setWarehouseID(int warehouseID) {
+		this.warehouseID = warehouseID;
+	}
 	public Item() {}
 	public Item(String itemName) {}
 	public Item(int itemID, String itemName) {}
@@ -51,6 +58,8 @@ public class Item {
 	@Override
 	public String toString() {
 		return "Item [itemID=" + itemID + ", itemName=" + itemName + ", itemCompany=" + itemCompany + ", itemCategory="
-				+ itemCategory + ", itemPrice=" + itemPrice + "]";
+				+ itemCategory + ", itemPrice=" + itemPrice + ", itemQuantity=" + itemQuantity + ", warehouseID="
+				+ warehouseID + "]";
 	}
+
 }

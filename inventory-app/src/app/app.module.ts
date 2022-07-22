@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatMenuItem, MatMenuModule } from '@angular/material/menu';
 import { Route, Routes } from '@angular/router';
 import { AccountComponent } from './account/account.component';
 import { BodyComponent } from './body/body.component';
@@ -36,6 +36,10 @@ import { PrimaryThemeDirective } from './primary-theme.directive';
 import { TextThemeDirective } from './text-theme.directive';
 import { WarehouseComponent } from './warehouse/warehouse.component';
 import { DialogWarehouseComponent } from './dialog-warehouse/dialog-warehouse.component';
+import { TopbarComponent } from './topbar/topbar.component';
+import {Menubar, MenubarModule} from 'primeng/menubar';
+import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
+import {ListboxModule} from 'primeng/listbox';
 
 const appRoute: Routes =[
   {
@@ -57,6 +61,8 @@ const appRoute: Routes =[
     TextThemeDirective,
     WarehouseComponent,
     DialogWarehouseComponent,
+    TopbarComponent,
+    WarehouseListComponent,
     
   ],
   imports: [
@@ -84,6 +90,10 @@ const appRoute: Routes =[
     GoogleMapsModule,
     ChartModule,
     MatSelectModule,
+    MenubarModule,
+    ListboxModule
+
+
     
   ],
   providers: [],

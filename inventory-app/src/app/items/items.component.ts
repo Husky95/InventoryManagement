@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
+import { VariablesService } from '../variables.service'
 
 @Component({
   selector: 'app-items',
@@ -14,18 +15,26 @@ import { DataSource } from '@angular/cdk/table';
 })
 export class ItemsComponent implements OnInit {
   //displayedColumns: string[] = ['productName', 'category', 'quantity', 'price','serial','action'];
-  displayedColumns: string[] = ['itemID','itemName', 'itemCategory','itemCompany','itemPrice','itemQuantity','action'];
+  displayedColumns: string[] = ['itemID','itemName', 'itemCategory','itemCompany','itemPrice','itemQuantity','warehouseID','action'];
 
   dataSource : MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private dialog: MatDialog, private api : ApiService
+  constructor(private dialog: MatDialog, private api : ApiService, private warehouseGlobal : VariablesService
             ) { }
+  id : any;
   ngOnInit(): void {
     this.getAllItem();
+    //this.id = setInterval(() => {
+      //this.getAllItem(); 
+    //}, 1000);   
   }
-
+  ngOnDestroy() {
+    if (this.id) {
+      clearInterval(this.id);
+    }
+  }
   openDialog(){
     this.dialog.open(DialogComponent,{
       width:'30%'
@@ -39,9 +48,25 @@ export class ItemsComponent implements OnInit {
     this.api.getItem()
     .subscribe({
       next:(res)=>{
-        console.log(res);
-        this.dataSource = new MatTableDataSource(res);
-        console.log(this.dataSource);
+        console.log("res")
+        console.log( res);
+        let temp = []
+        for(let i=0; i<res.length; i++){
+          if(res[i].warehouseID != this.warehouseGlobal.warehouseObject.warehouseID ){
+            continue;
+          }
+          else{
+           temp.push(res[i])
+          }
+        }
+        let totalItemCapacity = 0
+        for(let i=0;i<temp.length; i++)
+        {
+          totalItemCapacity = totalItemCapacity + temp[i].itemQuantity;
+        }
+        console.log(totalItemCapacity);
+        this.warehouseGlobal.currentCapacity = totalItemCapacity;
+        this.dataSource = new MatTableDataSource(temp);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -66,6 +91,7 @@ export class ItemsComponent implements OnInit {
       if(val === 'updated'){
         this.getAllItem();
       }
+      this.getAllItem();
     })
   }
   deleteItem(id : number){

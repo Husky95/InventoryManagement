@@ -34,6 +34,7 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 				item.setItemCategory(rs.getString(4));
 				item.setItemPrice(rs.getLong(5));
 				item.setItemQuantity(rs.getLong(6));
+				item.setWarehouseID(rs.getInt(7));
 
 				itemList.add(item);
 			}
@@ -60,8 +61,7 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 
 	@Override
 	public Item save(Item item) {
-		// If this was auto-increment, then the artistid is not needed
-		String sql = "INSERT INTO inventory (itemName, itemCategory, itemCompany, itemPrice, itemQuantity) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO inventory (itemName, itemCategory, itemCompany, itemPrice, itemQuantity, warehouseID) VALUES (?, ?, ?, ?, ?, ?)";
 		InventoryDbCreds creds = InventoryDbCreds.getInstance();	
 
 		try {
@@ -69,7 +69,8 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 
 			// Start a transaction
 			conn.setAutoCommit(false); // Prevents each query from immediately altering the database
-			
+			System.out.println(item);
+
 			// Obtain auto incremented values like so
 			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, item.getItemName());
@@ -77,17 +78,14 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 			ps.setString(3, item.getItemCompany());
 			ps.setLong(4, item.getItemPrice());
 			ps.setLong(5, item.getItemQuantity());
+			ps.setInt(6, item.getWarehouseID());
 
 			
 			int rowsAffected = ps.executeUpdate(); // If 0 is returned, my data didn't save
+			System.out.println(rowsAffected);
+
 			if (rowsAffected != 0) {
-				// If I want my keys do this code
-				ResultSet keys = ps.getGeneratedKeys();
-				// List a of all generated keys
-//				if (keys.next()) {
-//					int key = keys.getInt(1); // Give me the auto generated key
-//					artist.setId(key);
-//					return artist;
+				ResultSet keys = ps.getGeneratedKeys();	
 //				}
 				conn.commit(); // Executes ALL queries in a given transaction. Green button
 				conn.close();
@@ -96,7 +94,7 @@ public class ItemMySQLDAOImpl implements ItemDAO {
 				conn.rollback(); // Undoes any of the queries. Database pretends those never happened
 			}
 			
-		} catch (SQLException e) {e.printStackTrace();}
+		} catch (SQLException e) {e.printStackTrace();System.out.println("Post Item Query fail");}
 		
 		return null;
 	}
