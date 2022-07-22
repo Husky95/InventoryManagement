@@ -4,10 +4,15 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Service to handle http method (CRUD) for Item and Warehouse 
+ */
 export class ApiService {
 
   
   constructor(private http : HttpClient ) {}
+  
   postItem(data:any){
     return this.http.post<any>("http://localhost:8080/inventory-management-webapp/items/",data)
   }

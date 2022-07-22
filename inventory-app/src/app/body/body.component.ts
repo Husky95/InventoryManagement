@@ -9,7 +9,11 @@ export class BodyComponent {
 
   @Input() collapsed = false;
   @Input() screenWidth = 0;
-
+/**
+ * function to set make the body of the webpage responsive 
+ * when the siddnav changing
+ * 
+ */
   getBodyClass(): string {
     let styleClass = '';
     if(this.collapsed && this.screenWidth > 768) {

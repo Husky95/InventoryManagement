@@ -17,6 +17,12 @@ export class DialogComponent implements OnInit {
   constructor(private formBuilder : FormBuilder, private api : ApiService, private warehouseleGlobal :  VariablesService,
               @Inject(MAT_DIALOG_DATA) public editData : any,
               private dialogRef : MatDialogRef<DialogComponent>){ }
+  
+              
+/**
+ * init function create the dialog component and bind current value on the talbe to the dialog box when update icon is pressed
+ *
+ */
   ngOnInit(): void {
     
     this.productForm = this.formBuilder.group({
@@ -40,9 +46,19 @@ export class DialogComponent implements OnInit {
     }
   }
 
-  //Post value from form to database
-  addProduct(){
-    if (this.warehouseleGlobal.currentCapacity < parseInt(this.warehouseleGlobal.warehouseObject.capacity)){
+/**
+ * function to add a new item to the table , it check for user input capacity 
+ * and it check for current capacity + new item capacity if that greater than warehouse capacity
+ * then the function throw an alert that the unit value is too large
+ * Otherwise the function call post item to create a new item on inventory table and close the 
+ * dialog form on successful save
+ *
+ */  
+
+addProduct(){
+
+    let totalCapcity = this.warehouseleGlobal.currentCapacity + parseInt(this.productForm.value.itemQuantity);
+    if (totalCapcity < parseInt(this.warehouseleGlobal.warehouseObject.capacity)){
       if(!this.editData){
         if(this.productForm.valid){
           this.api.postItem(this.productForm.value)
@@ -66,6 +82,13 @@ export class DialogComponent implements OnInit {
       alert("Over Warehouse Capacity! Enter a smaller number for unit")
     }
   }
+
+  /**
+ * function to update a item on the table , it check for user input capacity 
+ * and it check for (current capacity + (item new capacity - item olde capacity)) if that greater than warehouse capacity
+ * then the function throw an alert that the unit value is too large
+ *
+ */  
   updateItem(){
     let passData = this.editData;
     let tempData = this.editData;
@@ -79,11 +102,7 @@ export class DialogComponent implements OnInit {
     
     let newCurrentCapacity = this.warehouseleGlobal.currentCapacity;
     let inputQuantity = parseInt(passData.itemQuantity)
-    console.log("Capacity Debug")
-    console.log(newCurrentCapacity);
-    console.log(oldQuantity);
-    console.log(inputQuantity);
-
+  
     newCurrentCapacity = newCurrentCapacity+(inputQuantity-oldQuantity)
 
     console.log(this.warehouseleGlobal.warehouseObject.capacity)

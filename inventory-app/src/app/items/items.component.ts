@@ -26,14 +26,6 @@ export class ItemsComponent implements OnInit {
   id : any;
   ngOnInit(): void {
     this.getAllItem();
-    //this.id = setInterval(() => {
-      //this.getAllItem(); 
-    //}, 1000);   
-  }
-  ngOnDestroy() {
-    if (this.id) {
-      clearInterval(this.id);
-    }
   }
   openDialog(){
     this.dialog.open(DialogComponent,{

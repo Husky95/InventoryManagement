@@ -4,9 +4,21 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class VariablesService {
 
+
+/**
+ * Service to set globalvariable 
+ */
+export class VariablesService {
+/**
+ * store the current selected warehouseobject 
+ * @type {any}
+ */
   warehouseObject : any ;
+/**
+ * store the warehouse current capacity 
+ * @type {number}
+ */
   currentCapacity : number;
 
   constructor() { }

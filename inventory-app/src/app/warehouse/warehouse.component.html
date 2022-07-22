@@ -1,6 +1,6 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
-<div><span class = "title">Warehouse List</span></div>
+<div clsee="title-container"><span class = "title">Warehouse List</span></div>
 
 <div class="card">
     <div class="card-body">
@@ -58,7 +58,7 @@
                     <button mat-icon-button (click)="editWarehouse(row)" color="primary">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button (click)="deleteWarehouse(row.itemID)" color="warn">
+                    <button mat-icon-button (click)="deleteWarehouse(row.warehouseID)" color="warn">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>

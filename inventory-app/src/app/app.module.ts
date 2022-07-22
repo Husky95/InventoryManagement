@@ -14,7 +14,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuItem, MatMenuModule } from '@angular/material/menu';
 import { Route, Routes } from '@angular/router';
-import { AccountComponent } from './account/account.component';
 import { BodyComponent } from './body/body.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ItemsComponent } from './items/items.component';
@@ -41,8 +40,6 @@ import {ListboxModule} from 'primeng/listbox';
 
 const appRoute: Routes =[
   {
-    path : 'account',
-    component : AccountComponent,
   }
 ];
 

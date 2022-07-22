@@ -15,6 +15,11 @@ export class DialogWarehouseComponent implements OnInit {
   constructor(private formBuilder : FormBuilder, private api : ApiService,
               @Inject(MAT_DIALOG_DATA) public editData : any,
               private dialogRef : MatDialogRef<DialogWarehouseComponent>){ }
+
+  /**
+ * init function create the dialog component and bind current value on the warehouse table to the dialog box when update icon is pressed
+ *
+ */
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       warehouseName: ['',Validators.required],
@@ -36,7 +41,11 @@ export class DialogWarehouseComponent implements OnInit {
     }
   }
 
-  //Post value from form to database
+/**
+ * function that take in the value in the warehouse dialog box
+ * then pass it to poswWarehouse() to create a new warehouse 
+ * 
+ */
   addWarehouse(){
     console.log(this.productForm.value);
     if(!this.editData){
@@ -58,6 +67,11 @@ export class DialogWarehouseComponent implements OnInit {
       this.updateWarehouse()
     }
   }
+  /**
+ * function that take in the value in the warehouse dialog box
+ * then pass it to putWarehouse() to update the selected warehouse 
+ * 
+ */
   updateWarehouse(){
     let passData = this.editData;
     passData.warehouseName=this.productForm.value.warehouseName;

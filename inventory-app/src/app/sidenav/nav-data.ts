@@ -1,3 +1,5 @@
+
+/** @constant {object} - routing variable to allow different tab on sidenav to change the main page view*/ 
 export const navbarData = [
     {
         routeLink: 'dashboard',

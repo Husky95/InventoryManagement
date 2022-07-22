@@ -20,7 +20,10 @@ export class DashboardComponent implements OnInit {
   warehouseCapacity = 'None'
   id : any;
   constructor(private warehouseGlobal : VariablesService ) {  }
-
+/**
+ * Init function that set the donut chart and call setInterval to call setWarehouse
+ * 
+ */
   ngOnInit(): void {
     
     this.id = setInterval(() => {
@@ -63,13 +66,19 @@ export class DashboardComponent implements OnInit {
   ngOnChanges(warehouseGlobal: VariablesService){
     console.log("chagne")
   }
-
+/**
+ * function to clear setInterval when component is destroy
+ * 
+ */
   ngOnDestroy() {
     if (this.id) {
       clearInterval(this.id);
     }
   }
-
+/**
+ * polling function that poll the Variable service warehouseObject 
+ * 
+ */
   setWarehouse(){
     this.warehouseName = this.warehouseGlobal.warehouseObject.warehouseName;
     this.warehouseStreet = this.warehouseGlobal.warehouseObject.address;

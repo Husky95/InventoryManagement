@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { DataSource } from '@angular/cdk/table';
+import { VariablesService } from '../variables.service'
 
 @Component({
   selector: 'app-warehouse',
@@ -20,12 +21,18 @@ export class WarehouseComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private dialog: MatDialog, private api : ApiService
-            ) { }
+  constructor(private dialog: MatDialog, private api : ApiService, private warehouseGlobal : VariablesService ) { }
+  /**
+ * init function that call getAllItem() to populate the table element
+ *
+ */
   ngOnInit(): void {
     this.getAllWarehouse();
   }
-
+  /**
+ *  function that open the dialog box component
+ * 
+ */
   openDialog(){
     this.dialog.open(DialogWarehouseComponent,{
       width:'30%'
@@ -35,6 +42,10 @@ export class WarehouseComponent implements OnInit {
       }
     })
   }
+  /**
+ *  function that call a postWarehouse() service function that return all the item in the warehoyuse table
+ *  then it populate all the table field by passing the post resp to MatTableDataSource
+ */
   getAllWarehouse(){
     this.api.getWarehouse()
     .subscribe({
@@ -50,6 +61,10 @@ export class WarehouseComponent implements OnInit {
       }
     })
   }
+  /**
+ *  boiler plate template filter function of the material-angular table component
+ *  
+ */
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -58,6 +73,11 @@ export class WarehouseComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+   /**
+ *  function that open a dialog box when user pressed the edit icon
+ *  after dialog box close it update the table with new value
+ *  
+ */
   editWarehouse(row : any){
     this.dialog.open(DialogWarehouseComponent,{
       width: '30%',
@@ -68,6 +88,11 @@ export class WarehouseComponent implements OnInit {
       }
     })
   }
+/**
+ *  function that delete an Warehouse table row when user pressed the delete icon
+ *  after dialog box close it update the table with new value
+ *  
+ */
   deleteWarehouse(id : number){
     console.log(id);
     this.api.deleteWarehouse(id)

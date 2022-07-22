@@ -48,7 +48,11 @@ export class SidenavComponent implements OnInit {
   collapsed = false;
   screenWidth = 0;
   navData = navbarData;
-
+/**
+ * function to handle resize event of sidenav
+ *
+ * @param {event} event - an event when sidenave resize is trigger 
+ */
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
@@ -57,23 +61,36 @@ export class SidenavComponent implements OnInit {
       this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
     }
   }
-
+/**
+ * init function that set the screenwidth and call set interval to poll warehouseName value
+ *
+ */
   ngOnInit(): void {
       this.screenWidth = window.innerWidth;
       this.id = setInterval(() => {
         this.setWarehouseName(); 
       }, 100); 
   }
-
+/**
+ * function that handle when sidenav is toggle to big or small, emit a collapsed event with new screenwidth
+ *
+ */
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
-
+/**
+ * function that handle when close sidenav button is pressed, emit a collapsed event with new screenwidth
+ *
+ */
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
+  /**
+ * polling function to read warehouseName in Variables Service
+ *
+ */
   setWarehouseName(){
     this.warehouseName = this.warehouseGlobal.warehouseObject.warehouseName;
     
